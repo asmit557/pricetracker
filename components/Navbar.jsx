@@ -4,7 +4,7 @@ import React from 'react'
 
 const navIcons = [
     {
-        src :'assets/icons/search.svg', alt: 'search'
+        src :'/assets/icons/search.svg', alt: 'search'
     },
     {
          src:'/assets/icons/black-heart.svg',alt: 'heart'
