@@ -74,7 +74,7 @@ export async function generateEmailBody(product, type) {
   return { subject, body };
 }
 
-// ** FIXED Nodemailer Transporter **
+// ** Nodemailer Transporter **
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -83,7 +83,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// ** FIXED Async Email Function **
+// ** Async Email Function with Promise Wrapper **
 export async function sendEmail(emailContent, sendTo) {
   try {
     const mailOptions = {
@@ -93,7 +93,16 @@ export async function sendEmail(emailContent, sendTo) {
       html: emailContent.body,
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await new Promise((resolve, reject) => {
+      transporter.sendMail(mailOptions, (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      });
+    });
+
     console.log("Email sent:", info.response);
     return { success: true, message: "Email sent successfully!" };
   } catch (error) {

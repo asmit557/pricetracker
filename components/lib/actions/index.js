@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import Product from "../models/product";
 import { connectToDB } from "../mongoose";
-import { scrapAmazonProduct } from "../scrapper";
+import { scrapeAmazonProduct } from "../scrapper";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { generateEmailBody, sendEmail } from "../nodemailer";
 
@@ -15,7 +15,7 @@ export async function scrapeProducts(productUrl) {
         try{
 
            connectToDB();
-           const scrapeProduct = await scrapAmazonProduct(productUrl);
+           const scrapeProduct = await scrapeAmazonProduct(productUrl);
            if(!scrapeProduct) return;
 
             let product = scrapeProduct;
