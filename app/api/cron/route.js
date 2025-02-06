@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
-import { getLowestPrice, getHighestPrice, getAveragePrice, getEmailNotifType } from "@/lib/utils";
-import { connectToDB } from "@/lib/mongoose";
-import Product from "@/lib/models/product.model";
-import { scrapeAmazonProduct } from "@/lib/scraper";
-import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
+import { getLowestPrice, getHighestPrice, getAveragePrice, getEmailNotifType } from "../../../components/lib/utils";
+import { connectToDB } from "../../../components/lib/mongoose";
+import Product from "../../../components/lib/models/product.js";
+import { scrapeAmazonProduct } from "../../../components/lib/scrapper";
+import { generateEmailBody, sendEmail } from "../../../components/lib/nodemailer";
 
 
 export async function GET(request) {
