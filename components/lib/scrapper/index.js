@@ -30,7 +30,6 @@ export async function scrapeAmazonProduct(productUrl) {
         $('.a.size.base.a-color-price'),
         $('.a-button-selected .a-color-base'),
        ); 
-       console.log(price);
        const originalPrice = extractPrice(
         $('#priceblock_ourprice'),
         $('.a-price.a-text-price span.a-offscreen'),
@@ -39,7 +38,6 @@ export async function scrapeAmazonProduct(productUrl) {
         $('.a-size-base.a-color-price')
       );
 
-       console.log(originalPrice);
       const outOfStock = $('#availability span').text().trim().toLowerCase()=== 'currently unavailable'; 
       const images =  $('#imgBlkFront').attr('data-a-dynamic-image') || 
       $('#landingImage').attr('data-a-dynamic-image') ||
@@ -48,7 +46,6 @@ export async function scrapeAmazonProduct(productUrl) {
       const imageUrls = Object.keys(JSON.parse(images));
       const currency = extractCurrency($('.a-price-symbol'));
       const discountRate = $('.savingsPercentage').text().replace(/[-%]/g,'');
-      console.log("wkbbisub")
        const description = extractDescription($)
       const data = {
         url:productUrl,
