@@ -6,6 +6,9 @@ import Product from "../../../components/lib/models/product.js";
 import { scrapeAmazonProduct } from "../../../components/lib/scrapper";
 import { generateEmailBody, sendEmail } from "../../../components/lib/nodemailer";
 
+export const maxDuration = 60; // This function can run for a maximum of 300 seconds
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET(request) {
   try {
